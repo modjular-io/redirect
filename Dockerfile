@@ -3,7 +3,8 @@ FROM nginx:alpine
 LABEL maintainer "Jeffrey Phillips Freeman <the@jeffreyfreeman.me>"
 
 ADD run.sh /run.sh
-ADD default.conf /etc/nginx/conf.d/default.conf
+ADD redirect.template /etc/nginx/redirect.template
+ADD proxy.template /etc/nginx/proxy.template
 
 RUN chmod +x /run.sh
 
