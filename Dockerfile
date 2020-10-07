@@ -9,8 +9,5 @@ RUN chmod +x /run.sh
 
 CMD ["/run.sh"]
 
-ENV VIRTUAL_HOST
-ENV LETSENCRYPT_HOST
 ENV VIRTUAL_PORT 80
-ENV LETSENCRYPT_EMAIL jeffrey.freeman@qoto.org
 
