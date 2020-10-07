@@ -6,9 +6,33 @@ A very simple container to redirect HTTP traffic to another server, based on `ng
 
 ### Environment variables
 
-- `SERVER_REDIRECT` - server to redirect to, eg. `www.example.com`
+Opertes in two modes, `proxy` and `redirect
+
+See also `docker-compose.yml` file.
+
+
+#### General Options
+
+The following engiernment variables can be set in any mode.
+
 - `SERVER_NAME` - optionally define the server name to listen on eg. `~^www.(?<subdomain>.+).example.com`
    - useful for capturing variable to use in server_redirect. 
+- `SERVER_ACCESS_LOG` - optionally define the location where nginx will write its access log
+   - if not set /dev/stdout is used
+- `SERVER_ERROR_LOG` - optionally define the location where nginx will write its error log
+   - if not set /dev/stderr is used
+
+#### Proxy Options
+
+- `PROXY_HOST` - The IP or hostname of the destination server to proxy to.  This setting triggers the proxy 
+                 mode. Only the additional variables listed below will will work in proxy mode.
+- `PROXY_PORT` - The destination port to proxy to.
+- `PROXY_SSL_PORT` - An optional argument for a SSL port to redirect to. If left blank ssl will not redirect
+
+#### Redirect Options
+
+- `SERVER_REDIRECT` - server to redirect to, eg. `www.example.com`. This setting triggers redirect mode. Only
+                      the additional variables listed below will wok in redirect mode.
 - `SERVER_REDIRECT_PATH` - optionally define path to redirect all requests eg. `/landingpage`
    - if not set nginx var `$request_uri` is used
 - `SERVER_REDIRECT_SCHEME` - optionally define scheme to redirect to 
@@ -25,12 +49,6 @@ A very simple container to redirect HTTP traffic to another server, based on `ng
     - useful if client should not change the request method from PUT, PATCH and DELETE to GET
     - if not set or not in allowed Codes `SERVER_REDIRECT_CODE` is used
     - so per default all requests will be redirected with the same status code
-- `SERVER_ACCESS_LOG` - optionally define the location where nginx will write its access log
-   - if not set /dev/stdout is used
-- `SERVER_ERROR_LOG` - optionally define the location where nginx will write its error log
-   - if not set /dev/stderr is used
-
-See also `docker-compose.yml` file.
 
 ## Usage
 
