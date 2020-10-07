@@ -1,10 +1,12 @@
 nginx-redirect:
-  image: qoto/nginx-redirect
-  build: .
+  image: qotoorg/nginx-redirect
   ports:
-    - "8888:80"
+    - "80"
   environment:
-    - SERVER_REDIRECT=www.example.com
+    - "SERVER_NAME=swarmpit.qoto.org"
+    - "PROXY_HOST=internal.swarm.qoto.org"
+    - "PROXY_PORT=888"
+    #- SERVER_REDIRECT=www.example.com
     # optionally define path to redirect all requests
     # if not set nginx var $request_uri is used
     #- SERVER_REDIRECT_PATH=/landingpage

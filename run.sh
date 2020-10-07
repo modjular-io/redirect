@@ -30,7 +30,7 @@ if [ -n "$PROXY_HOST" ] ; then
     sed -i '/^##START_SSL_SERVER##/,/^##END_SSL_SERVER##/{/^##START_SSL_SERVER##/!{/^##END_SSL_SERVER##/!d}}' /etc/nginx/conf.d/default.conf
     sed -i 's/^##[^#]*##$//g' /etc/nginx/conf.d/default.conf
   else
-    else lets just remove the comment blocks and make it pretty.
+    #else lets just remove the comment blocks and make it pretty.
     sed -i 's/^##[^#]*##$//g' /etc/nginx/conf.d/default.conf
   fi
 

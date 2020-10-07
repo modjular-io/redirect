@@ -10,7 +10,6 @@ Opertes in two modes, `proxy` and `redirect
 
 See also `docker-compose.yml` file.
 
-
 #### General Options
 
 The following engiernment variables can be set in any mode.
@@ -61,9 +60,9 @@ docker-compose up -d
 With `docker`    
 
 ```bash
-docker run -e SERVER_REDIRECT=www.example.com -p 8888:80 schmunk42/nginx-redirect
-docker run -e SERVER_REDIRECT=www.example.com -e SERVER_REDIRECT_PATH=/landingpage -p 8888:80 schmunk42/nginx-redirect
-docker run -e SERVER_REDIRECT=www.example.com -e SERVER_REDIRECT_PATH=/landingpage -e SERVER_REDIRECT_SCHEME=https -p 8888:80 schmunk42/nginx-redirect
+docker run -e SERVER_REDIRECT=www.example.com -p 8888:80 qotoorg/nginx-redirect
+docker run -e SERVER_REDIRECT=www.example.com -e SERVER_REDIRECT_PATH=/landingpage -p 8888:80 qotoorg/nginx-redirect
+docker run -e SERVER_REDIRECT=www.example.com -e SERVER_REDIRECT_PATH=/landingpage -e SERVER_REDIRECT_SCHEME=https -p 8888:80 qotoorg/nginx-redirect
 ```
 ## Resources
 
