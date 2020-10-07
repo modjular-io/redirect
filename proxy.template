@@ -1,18 +1,11 @@
-map $http_x_forwarded_proto $redirect_scheme {
-    default http;
-    https https;
-}
-
 upstream app_upstream {
     server ${PROXY_HOST}:${PROXY_PORT};
 }
-
 ##START_SSL_UPSTREAM##
 upstream app_ssl_upstream {
     server ${PROXY_HOST}:${PROXY_SSL_PORT};
 }
 ##END_SSL_UPSTREAM##
-
 server {
     listen 80;
     server_name ${SERVER_NAME};
@@ -21,7 +14,6 @@ server {
         proxy_pass http://app_upstream;
     }
 }
-
 ##START_SSL_SERVER##
 server {
     listen 443;
