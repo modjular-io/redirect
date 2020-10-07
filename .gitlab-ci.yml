@@ -1,0 +1,30 @@
+image: docker:stable
+
+services:
+  - docker:stable-dind
+
+variables:
+  REPOSITORY: "qotoorg/nginx-redirect"
+
+before_script:
+  - echo "${DOCKER_TOKEN}" | docker login --username "${DOCKER_USER}" --password-stdin
+
+stages:
+   - deploy
+
+nginx-redirect:
+    stage: deploy
+    script:
+      - if [ $CI_COMMIT_REF_NAME == "develop" ]; then
+          REV="git";
+        elif [ $CI_COMMIT_REF_NAME == "master" ]; then
+          REV="latest";
+        else
+          REV="$CI_COMMIT_REF_NAME";
+        fi
+      - docker build --network=host --pull -t "${REPOSITORY}:${REV}"
+                     --no-cache
+                     "."
+      - docker push "${REPOSITORY}"
+    tags:
+      - dind
